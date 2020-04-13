@@ -77,27 +77,3 @@ To take full advantage of these APIs, reducers must be typed strictly as the typ
 However, it seems reducers are not strictly typed in general.
 For example, though I think [`createSlice()`](https://redux-toolkit.js.org/api/createSlice) of `redux-toolbelt` is a relly cool API, it returns a reducer whose type accepts any action.
 I think the type safe version of `createSlice()` will be possible if [key augmentation during type mapping](https://github.com/microsoft/TypeScript/issues/12754) is available, so I'm waiting for it.
-
----
-
-(Original README)
-
-# ts-react-redux-hooks
-
-[![Build Status](https://travis-ci.org/heavenshell/ts-react-redux-hooks.svg?branch=master)](https://travis-ci.org/heavenshell/ts-react-redux-hooks)
-
-PoC of Typescript + react-redux@v7.1.0 + React Hooks + react-router
-
-## redux
-
-- [react-redux](https://github.com/reduxjs/react-redux)
-- [redux-aggregate](https://github.com/takefumi-yoshii/redux-aggregate)
-- [redux-thunk](https://github.com/reduxjs/redux-thunk)
-
-## Thanks
-
-`modules` are based on [@dkimura](https://github.com/dkimura)'s code.
-
-## License
-
-New BSD License
