@@ -74,7 +74,7 @@ const MyComponent2 = () => {
 
 ## Note
 
-To take full advantage of these APIs, reducers must be typed strictly as the types of their return values depend on the reducers types.
+To take full advantage of these APIs, reducers must be typed strictly as the types of these APIs' return values depend on the reducers types.
 However, it seems reducers are not strictly typed in general.
 For example, though I think [`createSlice()`](https://redux-toolkit.js.org/api/createSlice) of `redux-toolbelt` is a relly cool API, it returns a reducer whose type accepts any action.
 I think the type safe version of `createSlice()` will be possible if [key augmentation during type mapping](https://github.com/microsoft/TypeScript/issues/12754) is available, so I'm waiting for it.
