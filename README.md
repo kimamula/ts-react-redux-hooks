@@ -9,7 +9,7 @@ Here, I implemented `useReducerRegistry()` hook which can be used to register re
 To make `useReducerRegistry()` hook to be available, store must be created with `reducerRegistryEnhancer()` enhancer (If you are not familiar with Redux enhancer, please refer to [here](https://redux.js.org/recipes/configuring-your-store/#extending-redux-functionality)).
 
 The implementation of `useReducerRegistry()` and `reducerRegistryEnhancer()` can be found [here](src/react-redux-code-split.ts).
-This branch hosts the working example.
+This branch hosts the working example (you can try it by cloning and run `yarn install` and `yarn start`).
 
 The following code is the brief summary of how to use these APIs.
 
