@@ -34,7 +34,7 @@ const InitialState = { /* ... */ }
 
 // Create Store
 export const store = createStore(
-  initialReducers,
+  combineReducers(initialReducers),
   initialState,
   // It is easy to compose reducerRegistryEnhancer() with the other enhancers
   composeWithDevTools(
