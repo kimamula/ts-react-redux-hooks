@@ -1,12 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Configuration } from 'webpack'
 
 // Plugins
-import { default as HtmlWebpackPlugin } from 'html-webpack-plugin'
-import { default as MiniCssExtractPlugin } from 'mini-css-extract-plugin'
-import { default as TerserPlugin } from 'terser-webpack-plugin'
-import { default as OptimizeCSSAssetsPlugin } from 'optimize-css-assets-webpack-plugin'
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-// tslint:disable-next-line
 const TsConfigWebpackPlugin = require('ts-config-webpack-plugin')
 
 const config: Configuration = {
@@ -18,6 +18,7 @@ const config: Configuration = {
     filename: '[name].js',
     path: `${__dirname}/dist`,
     publicPath: '/',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
   },
   module: {
     rules: [
@@ -53,4 +54,4 @@ const config: Configuration = {
   },
 }
 
-export default config
+module.exports = config

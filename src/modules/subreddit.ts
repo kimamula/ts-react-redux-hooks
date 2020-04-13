@@ -1,26 +1,5 @@
-import axios from 'axios'
-import { ActionCreator, AnyAction, Reducer } from 'redux'
-import { createAggregate } from 'redux-aggregate'
-import { ThunkAction } from 'redux-thunk'
-
-import { ReduxState } from '.'
-
-// API
-export const api = axios.create({
-  baseURL: 'https://www.reddit.com/r',
-})
-
-type Child = {
-  kind: string
-  data: any // eslint-disable-line @typescript-eslint/no-explicit-any
-}
-
-export type SubRedditModel = {
-  data: Child[]
-}
-
-export const getSubreddit = (subreddit: string) =>
-  api.get<SubRedditModel>(`/${subreddit}.json`)
+import { Child } from './subreddit-actions'
+import * as actions from './subreddit-actions'
 
 // Reducer
 export type State = {
@@ -28,26 +7,25 @@ export type State = {
   children?: Child[]
 }
 
-export const initialState = {
+const initialState: State = {
   isLoading: false,
 }
 
-// Mutations
-const started = (state: State): State => ({
-  ...state,
-  isLoading: true,
-})
-
-const resolved = (state: State, { data }: SubRedditModel): State => ({
-  ...state,
-  ...data,
-  isLoading: false,
-})
-
-const rejected = (state: State): State => ({
-  ...state,
-  isLoading: false,
-})
+export default function reducer(
+  state: State = initialState,
+  action: ReturnType<typeof actions[keyof typeof actions]>
+): State {
+  switch (action.type) {
+    case 'subreddit/fetchSubredditStarted':
+      return { ...state, isLoading: true }
+    case 'subreddit/fetchSubredditResolved':
+      return { children: action.payload, isLoading: false }
+    case 'subreddit/fetchSubredditRejected':
+      return { ...state, isLoading: false }
+    default:
+      return state
+  }
+}
 
 const getPosts = (children?: Child[]) => {
   return children
@@ -61,38 +39,3 @@ const getPosts = (children?: Child[]) => {
 }
 
 export const queries = { getPosts }
-
-// Aggregate
-export const SubReddit = createAggregate(
-  { started, resolved, rejected },
-  'subreddit/'
-)
-
-// Reducer
-export default SubReddit.reducerFactory(initialState) as Reducer<
-  State,
-  AnyAction
->
-
-// Thunk Action
-export const fetchSubreddit: ActionCreator<ThunkAction<
-  Promise<SubRedditModel>,
-  ReduxState,
-  null,
-  AnyAction
->> = (subreddit: string) => {
-  const { started, resolved, rejected } = SubReddit.creators
-
-  return async dispatch => {
-    dispatch(started())
-
-    try {
-      const { data } = await getSubreddit(subreddit)
-      dispatch(resolved(data))
-      return data
-    } catch (errors) {
-      dispatch(rejected())
-      throw errors
-    }
-  }
-}

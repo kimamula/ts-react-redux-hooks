@@ -1,44 +1,23 @@
-import * as React from 'react'
-
-import { connect } from 'react-redux'
-import { AnyAction } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import React from 'react'
 
 import CounterComponent from '../components/pages/Counter'
-import { ReduxState } from '../modules'
+import counter from '../modules/counter'
+import { useReducerRegistry } from '../modules'
+import { decrement, increment } from '../modules/counter-actions'
 
-import { increment, decrement } from '../modules/counter'
+const reducers = { counter }
 
-type MapProps = {
-  count: number
-}
-
-const mapProps = ({ counter }: ReduxState): MapProps => ({
-  count: counter.count,
-})
-
-type MapDispatch = {
-  increment: () => any // eslint-disable-line @typescript-eslint/no-explicit-any
-  decrement: () => any // eslint-disable-line @typescript-eslint/no-explicit-any
-}
-
-const mapDispatch = (
-  dispatch: ThunkDispatch<ReduxState, null, AnyAction>
-): MapDispatch => ({
-  increment: () => dispatch(increment()),
-  decrement: () => dispatch(decrement()),
-})
-
-const connector = connect(mapProps, mapDispatch)
-
-const Counter = connector(({ count, increment, decrement }) => {
+const Counter = () => {
+  const { useSelector, useDispatch } = useReducerRegistry(reducers)
+  const dispatch = useDispatch()
+  const count = useSelector(s => s.counter.count)
   return (
     <CounterComponent
       count={count}
-      onDecrementClick={decrement}
-      onIncrementClick={increment}
+      onDecrementClick={() => dispatch(decrement())}
+      onIncrementClick={() => dispatch(increment())}
     />
   )
-})
+}
 
 export default Counter

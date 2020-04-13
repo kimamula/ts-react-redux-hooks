@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import { Button, Card, Form, Input, List } from 'antd'
 import { FormikConfig, FormikHelpers, FormikProps, useFormik } from 'formik'

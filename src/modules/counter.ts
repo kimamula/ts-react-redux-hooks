@@ -1,32 +1,22 @@
-import { AnyAction, Reducer } from 'redux'
-import { createAggregate } from 'redux-aggregate'
+import * as actions from './counter-actions'
 
-// Reducer
+const initialState = {
+  count: 0,
+}
 export type State = {
   count: number
 }
 
-export const initialState = {
-  count: 0,
-}
-
-const mutations = {
-  increment: (state: State) => ({ ...state, count: state.count + 1 }),
-  decrement: (state: State) => ({ ...state, count: state.count - 1 }),
-}
-
-// Aggregate
-export const Counter = createAggregate(mutations, 'counter/')
-
-// Reducer
-export default Counter.reducerFactory(initialState) as Reducer<State, AnyAction>
-
-export const increment = () => {
-  const { increment } = Counter.creators
-  return increment()
-}
-
-export const decrement = () => {
-  const { decrement } = Counter.creators
-  return decrement()
+export default function reducer(
+  state: State = initialState,
+  action: ReturnType<typeof actions[keyof typeof actions]>
+): State {
+  switch (action.type) {
+    case 'counter/increment':
+      return { count: state.count + 1 }
+    case 'counter/decrement':
+      return { count: state.count - 1 }
+    default:
+      return state
+  }
 }

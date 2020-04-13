@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { MemoryRouter, Route, Switch, RouteProps } from 'react-router-dom'
 import { MemoryRouterProps } from 'react-router'
 
-import { configureStore, ReduxState } from '../modules'
+import { configureStore } from '../modules'
 
 type RouterInitialProps = {
   paths: string[]
@@ -16,7 +16,7 @@ export type Props = MemoryRouterProps &
   RouterInitialProps & {
     component?: RouteProps['component']
     render?: RouteProps['render']
-    initialState?: ReduxState
+    initialState?: any
   }
 
 const TestProvider: React.FC<Props> = ({

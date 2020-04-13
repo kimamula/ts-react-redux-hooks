@@ -1,34 +1,27 @@
-import {
-  AnyAction,
-  applyMiddleware,
-  combineReducers,
-  createStore,
-  StoreEnhancer,
-} from 'redux'
+import { applyMiddleware, createStore, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
-import thunk, { ThunkDispatch, ThunkMiddleware } from 'redux-thunk'
+import thunk from 'redux-thunk'
 
-import counter, { State as CounterState } from './counter'
-import subreddit, { State as SubredditState } from './subreddit'
+import subreddit from './subreddit'
+import {
+  reducerRegistryEnhancer,
+  useReducerRegistry as _useReducerRegistry,
+  UseReducerRegistry,
+} from '../react-redux-code-split'
 
-export type ReduxState = {
-  counter: CounterState
-  subreddit: SubredditState
-}
+const rootReducers = { subreddit }
+const rootReducer = combineReducers(rootReducers)
 
-export const configureStore = (initialState?: ReduxState) => {
-  const rootReducer = combineReducers({
-    counter,
-    subreddit,
-  })
-
+export const configureStore = (initialState?: any) => {
   return createStore(
     rootReducer,
-    initialState || {},
+    initialState,
     composeWithDevTools(
-      applyMiddleware(thunk as ThunkMiddleware<ReduxState, AnyAction, null>)
-    ) as StoreEnhancer<{
-      dispatch: ThunkDispatch<ReduxState, null, AnyAction>
-    }>
+      applyMiddleware(thunk),
+      reducerRegistryEnhancer(rootReducers)
+    )
   )
 }
+
+export const useReducerRegistry: UseReducerRegistry<typeof rootReducers> = _useReducerRegistry
+export type RootState = ReturnType<typeof rootReducer>
