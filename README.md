@@ -1,7 +1,7 @@
 # Type safe code splitting of Redux in React app
 
 Using Redux in a type safe manner can be a little tricky.
-For example, `useSelector()` and `useDispatch()` hooks are not type safe.
+For example, `useSelector()` and `useDispatch()` hooks are not strictly typed.
 This may be OK if the store shape of your app is always the same.
 However it would be annoying if you code split Redux reducers and actions as [described](https://redux.js.org/recipes/code-splitting) and have to type `useSelector()` and `dispatc()` precisely in each component depending on which reducers you use for the component.
 
