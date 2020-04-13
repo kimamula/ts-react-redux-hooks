@@ -84,4 +84,4 @@ For example, though I think [`createSlice()`](https://redux-toolkit.js.org/api/c
 
 Another example is [typescript-fsa](https://github.com/aikoven/typescript-fsa) whose action creators create actions whose `type` property is typed as `string` and not something like `todo/FETCH_TODOS`, resulting in implementing not strictly typed reducers.
 
-I think these problems can be solved if [key augmentation during type mapping](https://github.com/microsoft/TypeScript/issues/12754) is available, so I'm waiting for it.
+I think these problems can be solved if [key augmentation during type mapping](https://github.com/microsoft/TypeScript/issues/12754) becomes available, so I'm waiting for it.
