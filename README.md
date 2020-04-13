@@ -8,6 +8,11 @@ However it would be annoying if you code split Redux reducers and actions as [de
 Here, I implemented `useReducerRegistry()` hook which can be used to register reducers and retrieve typed `useSelector()` and `useDispatch()` hooks in return.
 To make `useReducerRegistry()` hook to be available, store must be created with `reducerRegistryEnhancer()` enhancer (If you are not familiar with Redux enhancer, please refer to [here](https://redux.js.org/recipes/configuring-your-store/#extending-redux-functionality)).
 
+The implementation of `useReducerRegistry()` and `reducerRegistryEnhancer()` can be found [here](src/react-redux-code-split.ts).
+This branch hosts working example.
+
+The following code is the brief summary of how to use these APIs.
+
 ```ts
 // store.ts
 import {
@@ -65,9 +70,6 @@ const MyComponent2 = () => {
   // ...
 }
 ```
-
-The implementation of `useReducerRegistry()` and `reducerRegistryEnhancer()` can be found [here](src/react-redux-code-split.ts).
-This branch hosts working example.
 
 ## Note
 
