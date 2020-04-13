@@ -41,7 +41,8 @@ export const store = createStore(
   )
 )
 
-// Type useReducerRegistry as initialReducers has been already applied to the store
+// Type useReducerRegistry as initialReducers has been already applied to the store.
+// If there are no initial reducers, you can use useReducerRegistry directly without this additional typing 
 export const useReducerRegistry: UseReducerRegistry<typeof initialReducers> = _useReducerRegistry
 
 ---
