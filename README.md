@@ -22,6 +22,9 @@ import {
 } from './react-redux-code-split'
 import reducer1 from './reducer1'
 import reducer2 from './reducer2'
+import { applyMiddleware, createStore, combineReducers } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
+import thunk from 'redux-thunk'
 
 // Initial reducers
 const initialReducers = { reducer1, reducer2 }
