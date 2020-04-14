@@ -82,6 +82,6 @@ However, it seems reducers are not strictly typed in general.
 
 For example, though I think [`createSlice()`](https://redux-toolkit.js.org/api/createSlice) of [`redux-toolkit`](https://redux-toolkit.js.org/) is a relly cool API, it returns a reducer which is typed as it accepts any action.
 
-Another example is [typescript-fsa](https://github.com/aikoven/typescript-fsa) whose action creators create actions whose `type` property is typed as `string` and not something like `todo/FETCH_TODOS`, resulting in implementing not strictly typed reducers.
+Another example is [typescript-fsa](https://github.com/aikoven/typescript-fsa) whose action creators create actions whose `type` property is typed as `string` and not something like `todo/FETCH_TODOS`, resulting in implementing reducers whose interfaces are not strictly typed.
 
 I think these problems can be solved if [key augmentation during type mapping](https://github.com/microsoft/TypeScript/issues/12754) becomes available, so I'm waiting for it.
