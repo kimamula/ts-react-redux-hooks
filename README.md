@@ -1,4 +1,4 @@
-# Type safe code splitting of Redux in React app
+# Type safe code splitting of Redux in React app (PoC)
 
 Using Redux in a type safe manner can be a little tricky.
 For example, `useSelector()` and `useDispatch()` hooks are not strictly typed.
