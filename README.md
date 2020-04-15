@@ -6,7 +6,7 @@ This may be OK if the store shape of your app is always the same.
 However it would be annoying if you code split Redux reducers and actions as [described](https://redux.js.org/recipes/code-splitting) and have to type `useSelector()` and `dispatch()` precisely in each component depending on which reducers you use for the component.
 
 Here, I implemented `useReducerRegistry()` hook which can be used to register reducers and retrieve typed `useSelector()` and `useDispatch()` hooks in return.
-To make `useReducerRegistry()` hook to be available, store must be created with `reducerRegistryEnhancer()` enhancer (If you are not familiar with Redux enhancer, please refer to [here](https://redux.js.org/recipes/configuring-your-store/#extending-redux-functionality)).
+To make `useReducerRegistry()` hook to be available, store must be created with `reducerRegistryEnhancer()` enhancer (If you are not familiar with Redux enhancer, please refer to [the official Redux document](https://redux.js.org/recipes/configuring-your-store/#extending-redux-functionality)).
 
 The implementation of `useReducerRegistry()` and `reducerRegistryEnhancer()` can be found [here](src/react-redux-code-split.ts).
 This branch hosts the working example (you can try it by cloning and run `yarn install` and `yarn start`).
